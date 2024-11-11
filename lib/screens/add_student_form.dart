@@ -63,8 +63,7 @@ class _AddStudentFormState extends State<AddStudentForm>
                   prefixIcon: Icon(Icons.person_outline),
                 ),
                 style: theme.textTheme.bodyLarge,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: validateName,
+                validator: Validators.name,
               ),
               const SizedBox(height: 16),
               TextFormField(
@@ -74,8 +73,7 @@ class _AddStudentFormState extends State<AddStudentForm>
                   prefixIcon: Icon(Icons.email_outlined),
                 ),
                 style: theme.textTheme.bodyLarge,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: validateEmail,
+                validator: Validators.email,
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
@@ -85,7 +83,6 @@ class _AddStudentFormState extends State<AddStudentForm>
                   prefixIcon: Icon(Icons.school_outlined),
                 ),
                 style: theme.textTheme.bodyLarge,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
                 items: ['Enrolled', 'Graduated', 'Alumni']
                     .map((status) => DropdownMenuItem(
                           value: status,
