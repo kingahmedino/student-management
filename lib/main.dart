@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student_management/screens/home_page.dart';
+import 'package:student_management/theme/theme.dart';
 
 void main() {
   runApp(const StudentManagementApp());
@@ -12,11 +13,9 @@ class StudentManagementApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Student Management',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        useMaterial3: true,
-      ),
+      theme: AppTheme.lightTheme,
       home: const HomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

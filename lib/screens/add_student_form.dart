@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student_management/models/students.dart';
+import 'package:student_management/utils/functions.dart';
 
 class AddStudentForm extends StatefulWidget {
   final Function(Student) onStudentAdded;
@@ -44,6 +45,8 @@ class _AddStudentFormState extends State<AddStudentForm>
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return FadeTransition(
       opacity: _animation,
       child: Form(
@@ -55,34 +58,34 @@ class _AddStudentFormState extends State<AddStudentForm>
             children: [
               TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
-                validator: (value) {
-                  if (value?.isEmpty ?? true) {
-                    return 'Please enter a name';
-                  }
-                  return null;
-                },
+                decoration: const InputDecoration(
+                  labelText: 'Name',
+                  prefixIcon: Icon(Icons.person_outline),
+                ),
+                style: theme.textTheme.bodyLarge,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: validateName,
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _emailController,
-                decoration: const InputDecoration(labelText: 'Email'),
-                validator: (value) {
-                  if (value?.isEmpty ?? true) {
-                    return 'Please enter an email';
-                  }
-                  if (!value!.contains('@')) {
-                    return 'Please enter a valid email';
-                  }
-                  return null;
-                },
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  prefixIcon: Icon(Icons.email_outlined),
+                ),
+                style: theme.textTheme.bodyLarge,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: validateEmail,
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
                 value: _enrollmentStatus,
                 decoration: const InputDecoration(
                   labelText: 'Enrollment Status',
+                  prefixIcon: Icon(Icons.school_outlined),
                 ),
+                style: theme.textTheme.bodyLarge,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 items: ['Enrolled', 'Graduated', 'Alumni']
                     .map((status) => DropdownMenuItem(
                           value: status,
@@ -95,7 +98,7 @@ class _AddStudentFormState extends State<AddStudentForm>
                   });
                 },
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 32),
               ElevatedButton(
                 onPressed: _submitForm,
                 child: const Text('Add Student'),

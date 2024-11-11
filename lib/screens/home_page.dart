@@ -17,10 +17,88 @@ class _HomePageState extends State<HomePage> {
   final List<Student> _students = [];
   final _studentController = StudentController();
 
+  // Define screen titles
+  final List<String> _screenTitles = ['Students', 'Add Student', 'Settings'];
+
   @override
   void initState() {
     super.initState();
     _loadStudents();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Scaffold(
+      backgroundColor: theme.colorScheme.surface,
+      appBar: AppBar(
+        title: Text(
+          _screenTitles[_currentIndex],
+          style: theme.textTheme.titleLarge?.copyWith(
+            color: theme.colorScheme.primary,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1),
+          child: Container(
+            color: theme.colorScheme.outline.withOpacity(0.1),
+            height: 1,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: _buildBody(),
+      floatingActionButton: _currentIndex == 0
+          ? FloatingActionButton(
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 1;
+                });
+              },
+              child: const Icon(Icons.add),
+            )
+          : null,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.04),
+              blurRadius: 8,
+              offset: const Offset(0, -2),
+            ),
+          ],
+        ),
+        child: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.people_outline),
+              activeIcon: Icon(Icons.people),
+              label: 'Students',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_add_outlined),
+              activeIcon: Icon(Icons.person_add),
+              label: 'Add Student',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings_outlined),
+              activeIcon: Icon(Icons.settings),
+              label: 'Settings',
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Future<void> _loadStudents() async {
@@ -29,38 +107,6 @@ class _HomePageState extends State<HomePage> {
       _students.clear();
       _students.addAll(students);
     });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Student Management'),
-      ),
-      body: _buildBody(),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_add),
-            label: 'Add Student',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-      ),
-    );
   }
 
   Widget _buildBody() {
