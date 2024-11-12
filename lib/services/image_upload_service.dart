@@ -2,6 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
 import 'dart:async';
+import 'package:student_management/env.dart';
 
 class UploadProgress {
   final int bytesUploaded;
@@ -16,8 +17,8 @@ class UploadProgress {
 }
 
 class ImageUploadService {
-  static const String _apiUrl = 'https://api.imghippo.com/v1/upload';
-  static const String _apiKey = '489b437d51a3379a10863d86d6c7a6d6';
+  static const String _apiUrl = Env.imgHippoUrl;
+  static const String _apiKey = Env.imgHippoApiKey;
 
   Future<String?> uploadImage(
     File imageFile, {
