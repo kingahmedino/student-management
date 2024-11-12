@@ -43,6 +43,10 @@
 	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Student Management needs to access your photo library to manage your profile</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Student Management needs to access your camera to manage your profile</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 </dict>

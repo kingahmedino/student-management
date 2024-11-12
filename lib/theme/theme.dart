@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  static const int _primaryColorValue = 0xFF2563EB; // Blue-600
+  static const int _primaryColorValue = 0xFF2563EB;
 
   static final ColorScheme _colorScheme = ColorScheme.fromSeed(
     seedColor: const Color(_primaryColorValue),
     brightness: Brightness.light,
     primary: const Color(_primaryColorValue),
-    secondary: const Color(0xFF3B82F6), // Blue-500
-    tertiary: const Color(0xFF1D4ED8), // Blue-700
+    secondary: const Color(0xFF3B82F6),
+    tertiary: const Color(0xFF1D4ED8),
     surface: Colors.white,
-    error: const Color(0xFFDC2626), // Red-600
+    error: const Color(0xFFDC2626),
   );
 
   static final ThemeData lightTheme = ThemeData(

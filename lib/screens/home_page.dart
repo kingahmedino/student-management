@@ -128,10 +128,6 @@ class _HomePageState extends State<HomePage> {
   Future<void> _addStudent(Student student) async {
     await _studentController.addStudent(student);
     await _loadStudents();
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Student added successfully')),
-    );
   }
 
   Future<void> _deleteStudent(String id) async {

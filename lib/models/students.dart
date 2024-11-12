@@ -3,25 +3,15 @@ class Student {
   final String name;
   final String email;
   final String enrollmentStatus;
-  final String? profilePhotoPath;
+  final String? profilePhotoUrl;
 
   Student({
     required this.id,
     required this.name,
     required this.email,
     required this.enrollmentStatus,
-    this.profilePhotoPath,
+    this.profilePhotoUrl,
   });
-
-  factory Student.fromJson(Map<String, dynamic> json) {
-    return Student(
-      id: json['id'],
-      name: json['name'],
-      email: json['email'],
-      enrollmentStatus: json['enrollmentStatus'],
-      profilePhotoPath: json['profilePhotoPath'],
-    );
-  }
 
   Map<String, dynamic> toJson() {
     return {
@@ -29,7 +19,17 @@ class Student {
       'name': name,
       'email': email,
       'enrollmentStatus': enrollmentStatus,
-      'profilePhotoPath': profilePhotoPath,
+      'profilePhotoUrl': profilePhotoUrl,
     };
+  }
+
+  factory Student.fromJson(Map<String, dynamic> json) {
+    return Student(
+      id: json['id'],
+      name: json['name'],
+      email: json['email'],
+      enrollmentStatus: json['enrollmentStatus'],
+      profilePhotoUrl: json['profilePhotoUrl'],
+    );
   }
 }
